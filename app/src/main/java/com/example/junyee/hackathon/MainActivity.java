@@ -18,8 +18,9 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
-    private EditText editText;
-
+    private EditText nameText;
+    private EditText phoneText;
+    private EditText emailText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +28,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Context context = this;
-        editText = (EditText) this.findViewById(R.id.editText);
+        nameText = (EditText) this.findViewById(R.id.nameText);
+        phoneText = (EditText) this.findViewById(R.id.phoneText);
+        emailText = (EditText) this.findViewById(R.id.emailText);
         button = (Button) this.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String text2Qr = editText.getText().toString();
+//                String text2Qr = nameText.getText().toString();
 //                String text2Qr = "BIZCARD:N:Sean;X:Owen;T:Software Engineer;C:Google;A:76 9th Avenue, New York, NY";
-                String text2Qr = "MECARD:N:Owen,Sean;ADR:76 9th Avenue, 4th Floor, New York, NY 10011;TEL:121255512";
+                String text2Qr = "MECARD:N:" + nameText.getText().toString() + ";TEL:" + phoneText.getText().toString() + ";EMAIL:"+ emailText.getText().toString()+ ";";
                 MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
                 try {
                     BitMatrix bitMatrix = multiFormatWriter.encode(text2Qr, BarcodeFormat.QR_CODE, 200, 200);
